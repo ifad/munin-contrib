@@ -43,7 +43,7 @@ if(defined $ARGV[0] && $ARGV[0] eq 'config')
 {
     print <<EOC
 graph_title Data Remaining
-graph_vlabel Data Remaining (MB)
+graph_vlabel Data Remaining (Bytes)
 graph_category sabnzbd
 rem.label Remaining
 EOC
@@ -65,4 +65,5 @@ my $xmlvals = $xml->XMLin($vals);
 #get/output vals 
 my $left = $xmlvals->{mbleft};
 $left =~ /(\d+)\./;
-print "rem.value ".$1."\n";
+my $ret = $1 * 1024 * 1024;
+print "rem.value ".$ret."\n";
